@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react'
+import React, { useEffect, useState } from 'react'
 import { InputStyled, PlusButton, MinusButton } from '../styles/components/Cart';
 import { useDispatch } from 'react-redux';
 import { handleAmountCount } from '../redux/actions/cart';
@@ -11,36 +11,37 @@ export interface InputCountProps {
 
 const InputCount: React.FC<InputCountProps> = ({ item }) => {
     const dispatch = useDispatch()
-    const value = useRef(1)
+    const [value, setValue] = useState<number>(0)
+
+
+    useEffect(() => {
+        dispatch(handleAmountCount(item, value))
+    }, [value])
 
 
     const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         if (+e.target.value <= item.quantity) {
-            value.current = +e.target.value
-            dispatch(handleAmountCount(item, +e.target.value))
+            setValue(+e.target.value)
         }
     }
 
     const onPlus = () => {
-        if (value.current < item.quantity) {
-            dispatch(handleAmountCount(item, value.current + 1))
-            value.current++
+        if (value < item.quantity) {
+            setValue(prev => prev + 1)
         }
 
     }
-
-
+    
     const onMinus = () => {
-        if (value.current !== 1) {
-            dispatch(handleAmountCount(item, value.current - 1))
-            value.current--
+        if (value !== 1) {
+            setValue(prev => prev - 1)
         }
     }
-
+    
     return (
         <div style={{ display: 'flex', alignItems: 'center' }}>
             <PlusButton onClick={onPlus}>+</PlusButton>
-            <InputStyled value={item.count} onChange={onChange} type='number' />
+            <InputStyled value={value} onChange={onChange} type='number' />
             <MinusButton onClick={onMinus}>&ndash;</MinusButton>
         </div>
     )
