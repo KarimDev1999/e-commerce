@@ -27,7 +27,7 @@ const SearchPopup: React.FC<PopupProps> = ({ visible, data, setVisible, setQuery
             <ul >
                 {
                     data.length ?
-                        data.slice(0, 5).map(item => <li onClick={(e) => handleClick(e, item)} key={item._id}><img src={'https://e-commerce-test-app.herokuapp.com/' + item.image} alt="img" />{item.name}</li>)
+                        data.slice(0, 5).map(item => <li onClick={(e) => handleClick(e, item)} key={item._id}><img src={'http://localhost:5000/' + item.image} alt="img" />{item.name}</li>)
                         : <li>ничего не найдено</li>
                 }
             </ul>

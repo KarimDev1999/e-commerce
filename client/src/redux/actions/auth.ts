@@ -19,7 +19,7 @@ export const logout = () => {
 export const register = (user: any) => {
     return async (dispatch: Dispatch<AuthAction>) => {
         try {
-            const { data } = await axios.post('https://e-commerce-test-app.herokuapp.com/api/auth/register', user);
+            const { data } = await axios.post('http://localhost:5000/api/auth/register', user);
             localStorage.setItem('access_token', data.access_token)
             dispatch(setUser(data.user))
         }
@@ -33,7 +33,7 @@ export const register = (user: any) => {
 export const login = (user: any) => {
     return async (dispatch: Dispatch<AuthAction>) => {
         try {
-            const { data } = await axios.post('https://e-commerce-test-app.herokuapp.com/api/auth/login', user)
+            const { data } = await axios.post('http://localhost:5000/api/auth/login', user)
             localStorage.setItem('access_token', data.access_token)
             dispatch(setUser(data.user))
         }
@@ -47,7 +47,7 @@ export const login = (user: any) => {
 export const checkToken = () => {
     return async (dispatch: Dispatch<AuthAction>) => {
         try {
-            const { data } = await axios.get('https://e-commerce-test-app.herokuapp.com/api/auth/checkToken',
+            const { data } = await axios.get('http://localhost:5000/api/auth/checkToken',
                 { headers: { Authorization: `Bearer ${localStorage.getItem('access_token')}` } }
             )
             dispatch(setUser(data))

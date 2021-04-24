@@ -23,7 +23,7 @@ const CartItem: React.FC<CartItemProps> = ({ item }) => {
     return (
         <CartItemStyled >
             <CartProductImg>
-                <img src={'https://e-commerce-test-app.herokuapp.com/' + item.image} alt="img" />
+                <img src={'http://localhost:5000/' + item.image} alt="img" />
             </CartProductImg>
             <div>{item.name}</div>
             <InputCount item={item} />

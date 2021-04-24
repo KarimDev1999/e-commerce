@@ -13,7 +13,7 @@ const Search: React.FC = () => {
     const debounce = useDebounce(onSearch, 1000);
 
     function onSearch(query: string) {
-        axios.get(`https://e-commerce-test-app.herokuapp.com/api/products/search?query=${query}`).then(({ data }) => {
+        axios.get(`http://localhost:5000/api/products/search?query=${query}`).then(({ data }) => {
             setData(data)
             setVisible(true)
         })

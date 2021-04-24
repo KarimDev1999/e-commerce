@@ -27,7 +27,7 @@ const ProductPage = () => {
 
 
     useEffect(() => {
-        axios.get(`https://e-commerce-test-app.herokuapp.com/api/products/${id}`).then(({ data }) => {
+        axios.get(`http://localhost:5000/api/products/${id}`).then(({ data }) => {
             setProduct(data)
         })
     }, [])
@@ -58,7 +58,7 @@ const ProductPage = () => {
     return (
         <>
             <div style={{ display: 'flex' }}>
-                <img style={{ maxWidth: '450px' }} src={product && product.image ? ('https://e-commerce-test-app.herokuapp.com/' + product.image) : 'https://static.tildacdn.com/tild3934-3835-4132-b664-393337316165/console-playstation5.png'} alt="image" />
+                <img style={{ maxWidth: '450px' }} src={product ? 'http://localhost:5000/' + product.image : undefined} alt="image" />
 
                 <div style={{ alignSelf: 'center' }}>
                     <h3>{product && product.name}</h3>

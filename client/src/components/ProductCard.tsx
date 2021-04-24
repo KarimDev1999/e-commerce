@@ -43,7 +43,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
     return (
         <ProductCardStyled onClick={() => history.push('products/' + product._id)}>
             <ProductImgStyled style={{ margin: '20px 0px' }}>
-                <img src={'https://e-commerce-test-app.herokuapp.com/' + product.image} alt="image" />
+                <img src={'http://localhost:5000/' + product.image} alt="image" />
             </ProductImgStyled>
             <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
                 <span style={{ color: 'navy' }}>Name - {product.name}</span>
